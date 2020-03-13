@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Date;
+import java.util.Set;
 
 public class User {
     public User() {
@@ -15,7 +16,7 @@ public class User {
     private String password;
     private boolean status; // może int
     private Date registrationDate;
-    private Role role;
+    private Set<Role> role;
 
 
     public String getCompanyName() {
@@ -90,11 +91,11 @@ public class User {
         this.registrationDate = registrationDate;
     }
 
-    public Role getRole() {
+    public Set<Role> getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(Set<Role> role) {
         this.role = role;
     }
 }
