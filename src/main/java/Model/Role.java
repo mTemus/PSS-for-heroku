@@ -1,17 +1,23 @@
 package Model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+@Getter
+@Setter
 public class Role {
 
-    public Role() {
-    }
-
+    @Id
+    @GeneratedValue
+    @Column(name = "idRole")
+    private Integer idRole;
+    @Column(name = "roleName")
     private String roleName;
 
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
 }
