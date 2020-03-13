@@ -3,6 +3,9 @@ package Model;
 import java.util.Date;
 
 public class User {
+    public User() {
+    }
+
     private String companyName;
     private String companyAddress;
     private String companyNip;
