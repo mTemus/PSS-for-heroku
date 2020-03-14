@@ -42,7 +42,8 @@ public class User {
     private String password;
 
     @Column(name = "status")
-    private boolean status; // może int
+    private Integer status; // może int
+
     @Column(name = "registrationDate")
     private Date registrationDate;
 
