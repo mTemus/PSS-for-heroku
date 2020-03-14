@@ -20,32 +20,46 @@ public class Delegation {
     @GeneratedValue
     @Column(name = "idDelegation")
     private Integer idDelegation;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "dateTimeStart", nullable = false)
     private Date dateTimeStart;
+
     @Column(name = "dateTimeStop", nullable = false)
     private Date dateTimeStop;
+
     @Column(name = "travelDietAmount")
     private int travelDietAmount = 30;
+
     @Column(name = "breakfastNumber")
     private int breakfastNumber = 0;
+
     @Column(name = "dinnerNumber")
     private int dinnerNumber = 0;
+
     @Column(name = "supperNumber")
     private int supperNumber = 0;
+
     @Column(name = "transportType")
     private TransportType transportType;
+
     @Column(name = "autoCapacity")
     private AutoCapacity autoCapacity;
+
     @Column(name = "km")
     private int km;
+
     @Column(name = "accommodationPrice")
     private int accommodationPrice;
+
     @Column(name = "ticketsPrice")
     private int TicketsPrice;
+
     @Column(name = "otherOutlayDesc")
     private String otherOutlayDesc;
+
     @Column(name = "otherOutlayPrice")
     private int otherOutlayPrice;
 

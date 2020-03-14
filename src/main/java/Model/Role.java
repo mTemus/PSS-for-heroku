@@ -17,6 +17,7 @@ public class Role {
     @GeneratedValue
     @Column(name = "idRole")
     private Integer idRole;
+
     @Column(name = "roleName")
     private String roleName;
 
