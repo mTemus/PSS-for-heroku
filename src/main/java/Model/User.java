@@ -3,10 +3,7 @@ package Model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
@@ -42,11 +39,16 @@ public class User {
     private String password;
 
     @Column(name = "status")
-    private Integer status; // może int
+    private Integer status;
 
     @Column(name = "registrationDate")
     private Date registrationDate;
 
-    @Column(name = "role")
-    private Set<Role> role;
+    @Column(name = "roles")
+    @ManyToMany
+    private Set<Role> roles;
+
+    @OneToOne
+    @JoinColumn(name = "idDelegation")
+    private Delegation delegation;
 }
