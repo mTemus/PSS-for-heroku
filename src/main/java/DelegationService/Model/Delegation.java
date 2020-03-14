@@ -1,7 +1,7 @@
-package Model;
+package DelegationService.Model;
 
-import Other.AutoCapacity;
-import Other.TransportType;
+import DelegationService.Other.AutoCapacity;
+import DelegationService.Other.TransportType;
 import lombok.Getter;
 import lombok.Setter;
 

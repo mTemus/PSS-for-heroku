@@ -1,4 +1,4 @@
-package Model;
+package DelegationService.Model;
 
 import lombok.Getter;
 import lombok.Setter;
