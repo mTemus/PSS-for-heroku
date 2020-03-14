@@ -19,19 +19,19 @@ public class User {
     @GeneratedValue
     @Column(name = "idUser")
     private Integer idUser;
-    @Column(name = "companyName")
+    @Column(name = "companyName", nullable = false)
     private String companyName;
-    @Column(name = "companyAddress")
+    @Column(name = "companyAddress", nullable = false)
     private String companyAddress;
-    @Column(name = "companyNip")
+    @Column(name = "companyNip", nullable = false)
     private String companyNip;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "status")
     private boolean status; // może int

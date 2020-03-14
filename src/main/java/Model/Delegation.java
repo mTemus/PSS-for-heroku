@@ -22,9 +22,9 @@ public class Delegation {
     private Integer idDelegation;
     @Column(name = "description")
     private String description;
-    @Column(name = "dateTimeStart")
+    @Column(name = "dateTimeStart", nullable = false)
     private Date dateTimeStart;
-    @Column(name = "dateTimeStop")
+    @Column(name = "dateTimeStop", nullable = false)
     private Date dateTimeStop;
     @Column(name = "travelDietAmount")
     private int travelDietAmount = 30;
