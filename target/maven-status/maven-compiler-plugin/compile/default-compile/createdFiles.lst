@@ -1,0 +1,9 @@
+Main.class
+Model\Delegation.class
+Other\AutoCapacity.class
+Model\User.class
+Repository\RoleRepository.class
+Model\Role.class
+Other\TransportType.class
+Repository\DelegationRepository.class
+Repository\UserRepository.class
