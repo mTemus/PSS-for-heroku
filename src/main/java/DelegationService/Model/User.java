@@ -2,20 +2,24 @@ package DelegationService.Model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "User")
 @Getter
 @Setter
 public class User {
 
     @Id
-    @GeneratedValue
-    @Column(name = "idUser")
-    private Integer idUser;
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "iduser")
+    private Integer iduser;
 
     @Column(name = "companyName", nullable = false)
     private String companyName;
@@ -23,7 +27,7 @@ public class User {
     @Column(name = "companyAddress", nullable = false)
     private String companyAddress;
 
-    @Column(name = "companyNip", nullable = false)
+    @Column(name = "comapnyNip", nullable = false)
     private String companyNip;
 
     @Column(name = "name", nullable = false)
@@ -39,16 +43,29 @@ public class User {
     private String password;
 
     @Column(name = "status")
-    private Integer status;
+    private Boolean status = true;
 
     @Column(name = "registrationDate")
-    private Date registrationDate;
+    private Date registrationDate = new Date();
 
-    @Column(name = "roles")
+
+    @Column(name = "roleName")
     @ManyToMany
+    @JoinColumn(name = "roleName")
     private Set<Role> roles;
 
-    @OneToOne
-    @JoinColumn(name = "idDelegation")
-    private Delegation delegation;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "")
+    private List<Delegation> delegation;
+
+    public User(){}
+
+    public User(String companyName, String companyAddress, String companyNip, String name, String lastName, String email, String password){
+        this.companyName = companyName;
+        this.companyAddress = companyAddress;
+        this.companyNip = companyNip;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 }

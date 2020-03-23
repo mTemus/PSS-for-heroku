@@ -4,14 +4,16 @@ import DelegationService.Other.AutoCapacity;
 import DelegationService.Other.TransportType;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.sql.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
+@Table(name = "Delegation")
 @Getter
 @Setter
 public class Delegation {
@@ -24,43 +26,58 @@ public class Delegation {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "dateTimeStart", nullable = false)
+    @Column(name = "dataTimeStart", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateTimeStart;
 
-    @Column(name = "dateTimeStop", nullable = false)
-    private Date dateTimeStop;
+    @Column(name = "dataTimeStop", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dataTimeStop;
 
     @Column(name = "travelDietAmount")
-    private int travelDietAmount = 30;
+    private Integer travelDietAmount = 30;
 
     @Column(name = "breakfastNumber")
-    private int breakfastNumber = 0;
+    private Integer breakfastNumber = 0;
 
     @Column(name = "dinnerNumber")
-    private int dinnerNumber = 0;
+    private Integer dinnerNumber = 0;
 
     @Column(name = "supperNumber")
-    private int supperNumber = 0;
+    private Integer supperNumber = 0;
 
     @Column(name = "transportType")
+    @Enumerated(EnumType.STRING)
     private TransportType transportType;
 
+    @Column(name = "ticketPrice")
+    private Float ticketPrice;
+
     @Column(name = "autoCapacity")
+    @Enumerated(EnumType.STRING)
     private AutoCapacity autoCapacity;
 
     @Column(name = "km")
-    private int km;
+    private Float km;
 
-    @Column(name = "accommodationPrice")
-    private int accommodationPrice;
+    @Column(name = "accomodationPrice")
+    private Float accomodationPrice;
 
-    @Column(name = "ticketsPrice")
-    private int TicketsPrice;
+    @Column(name = "otherticketsPrice")
+    private Float otherTicketsPrice;
 
     @Column(name = "otherOutlayDesc")
     private String otherOutlayDesc;
 
     @Column(name = "otherOutlayPrice")
-    private int otherOutlayPrice;
+    private Float otherOutlayPrice;
+
+    public Delegation(){}
+
+    public Delegation(Integer idDelegation, String description, Date dateTimeStart){
+        this.idDelegation = idDelegation;
+        this.description = description;
+        this.dateTimeStart = dateTimeStart;
+    }
 
 }
