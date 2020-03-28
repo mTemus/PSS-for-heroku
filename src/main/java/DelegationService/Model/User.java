@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -57,7 +58,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "")
     private List<Delegation> delegation;
 
-    public User(){}
+    public User() {
+        delegation = new ArrayList<>();
+    }
 
     public User(String companyName, String companyAddress, String companyNip, String name, String lastName, String email, String password){
         this.companyName = companyName;
@@ -67,5 +70,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+
+        delegation = new ArrayList<>();
     }
 }
