@@ -1,7 +1,8 @@
-package DelegationService.Service;
+package DelegationService.Service.UserServiceTests;
 
 import DelegationService.Model.User;
 import DelegationService.Repository.UserRepository;
+import DelegationService.Service.UserService;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,12 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
-
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class DeleteUserByIdTest {
+public class GetAllUsersTest {
 
     @Autowired
     private UserRepository testUserRepository;
@@ -30,8 +28,7 @@ public class DeleteUserByIdTest {
     private UserService testUserService;
 
     @Test
-    public void deleteUserById() {
-
+    public void getAllUsers() {
         List<User> expectedUsers = new ArrayList<>();
 
         User testUser1 = new User(
@@ -50,15 +47,33 @@ public class DeleteUserByIdTest {
                 "Testowicz",
                 "kaztes@o2.pl",
                 "1234admin");
-
-        entityManager.persist(testUser1);
-        entityManager.persist(testUser2);
+        User testUser3 =new User(
+                "Grupa 4",
+                "Kaliskiego 6/9",
+                "123456789",
+                "Jakub",
+                "Mlekowski",
+                "88wjd@wir.pl",
+                "mocneh4slo$");
+        User testUser4 =new User(
+                "Grupa 1",
+                "Uniwersytecka 66",
+                "2442842",
+                "Eryk",
+                "Daniel",
+                "sarna77@wp.pl",
+                "buszmen38");
 
         expectedUsers.add(testUser1);
         expectedUsers.add(testUser2);
+        expectedUsers.add(testUser3);
+        expectedUsers.add(testUser4);
 
-        testUserService.deleteUserById(2);
-        expectedUsers.remove(1);
+        entityManager.persist(testUser1);
+        entityManager.persist(testUser2);
+        entityManager.persist(testUser3);
+        entityManager.persist(testUser4);
+        entityManager.flush();
 
         List<User> allUsersInDatabase = testUserService.getAllUsers();
 
