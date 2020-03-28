@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class getAllUsersByRoleNameTest {
+public class GetAllUsersByRoleNameTest {
 
     @Autowired
     private UserRepository testUserRepository;
