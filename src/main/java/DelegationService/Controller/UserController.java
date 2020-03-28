@@ -1,7 +1,7 @@
 package DelegationService.Controller;
 
 import DelegationService.Model.User;
-import DelegationService.Service.UserServ;
+import DelegationService.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,36 +13,36 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserServ userServ;
+    private UserService userService;
 
     @PostMapping("/register")
     @ResponseBody
     public void registerUser(@RequestBody User userNew){
-        userServ.registerUser(userNew);
+        userService.registerUser(userNew);
     }
 
     @GetMapping("/getAllUsers")
     @ResponseBody
     public List<User> getAllUsers(){
-        return userServ.getAllUsers();
+        return userService.getAllUsers();
     }
 
     @GetMapping("/gettAllUsersByRole")
     @ResponseBody
     public List<User> gettAllUsersByRole(String roleName){
-        return userServ.getAllUsersByRoleName(roleName);
+        return userService.getAllUsersByRoleName(roleName);
     }
 
     @PutMapping("/changePassword")
     @ResponseBody
     public void changePasword(@RequestParam long userId, @RequestParam String passwordNew){
-        userServ.changePassword(userId, passwordNew);
+        userService.changePassword(userId, passwordNew);
     }
 
     @DeleteMapping("/deleteUserById")
     @ResponseBody
     public boolean deleteUserById(@RequestParam long userId){
-        return userServ.deleteUserById(userId);
+        return userService.deleteUserById(userId);
     }
 
 }
