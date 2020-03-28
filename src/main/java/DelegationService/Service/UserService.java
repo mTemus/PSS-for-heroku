@@ -22,21 +22,21 @@ public class UserService {
         return  userRepository.findAll();
     }
 
-    public List<User> getAllUsersByRoleName(String roleName){
+    public List<User> getAllUsersByRoleName(String roleName) {
         if(roleName.equals("USER")) return userRepository.findByRoles(new Role(RoleTypes.USER));
         else{
             return userRepository.findByRoles(new Role(RoleTypes.ADMIN));
         }
     }
 
-    public void changePassword(long userId, String passwordNew){
+    public void changePassword(long userId, String passwordNew) {
         userRepository.findById((int)userId).map(user -> {
             user.setPassword(passwordNew);
             return userRepository.save(user);
         });
     }
 
-    public boolean deleteUserById(long userId){
+    public boolean deleteUserById(long userId) {
         boolean exist = userRepository.findAll().removeIf(user -> user.getIduser() == (int)userId);
         if(exist){
             userRepository.deleteById((int)userId);

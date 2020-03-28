@@ -20,11 +20,11 @@ public class DelegationService {
     @Autowired
     DelegationRepository delegationRepository;
 
-    public List<Delegation> getAllByUserId(long userId){
+    public List<Delegation> getAllByUserId(long userId) {
         return userRepository.findById((int)userId).map(User::getDelegation).get();
     }
 
-    public void addDelegation(long userId, Delegation delegation){
+    public void addDelegation(long userId, Delegation delegation) {
         List<Delegation> userDelegation = userRepository.findById((int)userId).map(User::getDelegation).get();
         userDelegation.add(delegation);
         userRepository.findById((int)userId).map(user -> {
@@ -33,7 +33,7 @@ public class DelegationService {
         });
     }
 
-    public boolean removeDelegation(long userId, long delegationId){
+    public boolean removeDelegation(long userId, long delegationId) {
         boolean userExist = userRepository.findAll().removeIf(user -> user.getIduser() == (int)userId);
         boolean delegationExist = delegationRepository.findAll().removeIf(user -> user.getIdDelegation() == (int)delegationId);
         if(userExist&&delegationExist){
@@ -44,7 +44,7 @@ public class DelegationService {
         }
     }
 
-    public void changeDelegation(long delegationId, Delegation delegation){
+    public void changeDelegation(long delegationId, Delegation delegation) {
         delegationRepository.findById((int)delegationId).map(delegation1 -> {
             delegation1 = delegation;
             return delegationRepository.save(delegation1);
@@ -55,13 +55,13 @@ public class DelegationService {
         return delegationRepository.findAll();
     }
 
-    public List<Delegation> getAllDelegationsOrderByDateStartDesc(){
+    public List<Delegation> getAllDelegationsOrderByDateStartDesc() {
         return delegationRepository.findAll().stream()
                 .sorted(Comparator.comparing(Delegation::getDateTimeStart, Comparator.reverseOrder()))
                 .collect(Collectors.toList());
     }
 
-    public List<Delegation> getAllDelegationsByUserOrderByDateStartDesc(long userId){
+    public List<Delegation> getAllDelegationsByUserOrderByDateStartDesc(long userId) {
         return  getAllByUserId(userId).stream()
                 .sorted(Comparator.comparing(Delegation::getDateTimeStart, Comparator.reverseOrder()))
                 .collect(Collectors.toList());
