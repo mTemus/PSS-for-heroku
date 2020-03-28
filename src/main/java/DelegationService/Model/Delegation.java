@@ -32,7 +32,7 @@ public class Delegation {
 
     @Column(name = "dataTimeStop", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dataTimeStop;
+    private Date dateTimeStop;
 
     @Column(name = "travelDietAmount")
     private Integer travelDietAmount = 30;
@@ -74,10 +74,10 @@ public class Delegation {
 
     public Delegation(){}
 
-    public Delegation(Integer idDelegation, String description, Date dateTimeStart){
-        this.idDelegation = idDelegation;
+    public Delegation(String description, Date dateTimeStart, Date dateTimeStop) {
         this.description = description;
         this.dateTimeStart = dateTimeStart;
+        this.dateTimeStop = dateTimeStop;
     }
 
 }
