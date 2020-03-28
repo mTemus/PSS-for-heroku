@@ -40,7 +40,7 @@ public class GetAllDelegationsOrderByDateStartDescTest {
     private List<Delegation> createdDelegations;
 
     @Before
-    public void addUsersToDatabase() {
+    public void setUp() {
         User testUser = new User(
                 "Grupa 4",
                 "Kaliskiego 6/9",
@@ -52,10 +52,7 @@ public class GetAllDelegationsOrderByDateStartDescTest {
 
         entityManager.persist(testUser);
         entityManager.flush();
-    }
 
-    @Before
-    public void addDelegationsToDatabase() {
         createdDelegations = new ArrayList<>();
 
         Date startDate = new Date();

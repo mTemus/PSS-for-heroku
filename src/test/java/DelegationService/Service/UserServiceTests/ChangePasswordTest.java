@@ -4,6 +4,7 @@ import DelegationService.Model.User;
 import DelegationService.Repository.UserRepository;
 import DelegationService.Service.UserService;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,11 @@ public class ChangePasswordTest {
     @Autowired
     private UserService testUserService;
 
-    @Test
-    public void changePassword() {
+    private User testUser;
 
-        User testUser = new User(
+    @Before
+    public void setUp() {
+       testUser = new User(
                 "Grupa 4",
                 "Kaliskiego 6/9",
                 "123456789",
@@ -40,7 +42,10 @@ public class ChangePasswordTest {
 
         testUser.setPassword("mocneHaslo!9");
         testUserService.changePassword(1, "mocneHaslo!9");
+    }
 
+    @Test
+    public void changePassword() {
         User addedUser = entityManager.find(User.class, 1);
 
         Assertions.assertThat(addedUser.getPassword()).isEqualTo(testUser.getPassword());

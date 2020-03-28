@@ -7,6 +7,7 @@ import DelegationService.Repository.UserRepository;
 import DelegationService.Service.DelegationService;
 import DelegationService.Service.UserService;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,10 @@ public class AddDelegationTest {
     @Autowired
     private DelegationService testDelegationService;
 
-    @Test
-    public void addDelegation() {
+    private Delegation testDelegation;
 
+    @Before
+    public void setUp() {
         User testUser = new User(
                 "Grupa 4",
                 "Kaliskiego 6/9",
@@ -65,10 +67,13 @@ public class AddDelegationTest {
         endDate.setMinutes(0);
         endDate.setSeconds(0);
 
-        Delegation testDelegation = new Delegation("Lunapark",startDate, endDate);
+        testDelegation = new Delegation("Lunapark",startDate, endDate);
 
         testDelegationService.addDelegation(1, testDelegation);
+    }
 
+    @Test
+    public void addDelegation() {
         List<Delegation> foundDelegations = testDelegationRepository.findAll();
 
         for (Delegation d: foundDelegations) {
@@ -76,6 +81,5 @@ public class AddDelegationTest {
                 Assertions.assertThat(d).isEqualTo(testDelegation);
             }
         }
-
     }
 }

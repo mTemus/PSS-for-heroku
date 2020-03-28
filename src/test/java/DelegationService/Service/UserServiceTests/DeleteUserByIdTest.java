@@ -4,6 +4,7 @@ import DelegationService.Model.User;
 import DelegationService.Repository.UserRepository;
 import DelegationService.Service.UserService;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,11 @@ public class DeleteUserByIdTest {
     @Autowired
     private UserService testUserService;
 
-    @Test
-    public void deleteUserById() {
+    private List<User> expectedUsers = new ArrayList<>();
 
-        List<User> expectedUsers = new ArrayList<>();
+    @Before
+    public void setUp() {
+        expectedUsers = new ArrayList<>();
 
         User testUser1 = new User(
                 "Grupa 4",
@@ -58,7 +60,10 @@ public class DeleteUserByIdTest {
 
         testUserService.deleteUserById(2);
         expectedUsers.remove(1);
+    }
 
+    @Test
+    public void deleteUserById() {
         List<User> allUsersInDatabase = testUserService.getAllUsers();
 
         Assertions.assertThat(allUsersInDatabase).isEqualTo(expectedUsers);

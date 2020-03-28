@@ -4,6 +4,7 @@ import DelegationService.Model.User;
 import DelegationService.Repository.UserRepository;
 import DelegationService.Service.UserService;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class RegisterUserTest {
 
     @Autowired
     private UserService testUserService;
+
+    @Before
+    public void setUp() {
+
+    }
 
     @Test
     public void registerUser() {

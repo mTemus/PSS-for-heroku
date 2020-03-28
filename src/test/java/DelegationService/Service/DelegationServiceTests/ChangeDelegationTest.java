@@ -40,7 +40,7 @@ public class ChangeDelegationTest {
     Delegation testDelegation;
 
     @Before
-    public void addUsersToDatabase() {
+    public void setUp() {
         User testUser = new User(
                 "Grupa 4",
                 "Kaliskiego 6/9",
@@ -52,10 +52,7 @@ public class ChangeDelegationTest {
 
         entityManager.persist(testUser);
         entityManager.flush();
-    }
 
-    @Before
-    public void addDelegationsToDatabase() {
         Date startDate = new Date();
         Date endDate = new Date();
         endDate.setYear(2020);
