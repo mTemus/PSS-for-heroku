@@ -27,7 +27,6 @@ import static org.junit.Assert.*;
 @DataJpaTest
 public class GetAllDelegationsByUserOrderByDateStartDescTest {
 
-
     @Autowired
     private DelegationRepository testDelegationRepository;
 
