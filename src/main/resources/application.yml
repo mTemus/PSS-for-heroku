@@ -8,3 +8,6 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+  vaadin:
+    productionMode: false
+    compatibilityMode: true

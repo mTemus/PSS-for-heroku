@@ -45,4 +45,13 @@ public class UserService {
             return false;
         }
     }
+    public void delete(User user){
+        userRepository.delete(user);
+    }
+    public User finndUserByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+    public User modifyUser(long userId, User userNew){
+        return userRepository.save(userNew);
+    }
 }

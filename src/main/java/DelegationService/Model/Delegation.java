@@ -4,13 +4,10 @@ import DelegationService.Other.AutoCapacity;
 import DelegationService.Other.TransportType;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "Delegation")
@@ -19,18 +16,18 @@ import java.util.Set;
 public class Delegation {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @Column(name = "idDelegation")
     private Integer idDelegation;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "dataTimeStart", nullable = false)
+    @Column(name = "dateTimeStart", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateTimeStart;
 
-    @Column(name = "dataTimeStop", nullable = false)
+    @Column(name = "dateTimeStop", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateTimeStop;
 
@@ -54,8 +51,7 @@ public class Delegation {
     private Float ticketPrice;
 
     @Column(name = "autoCapacity")
-    @Enumerated(EnumType.STRING)
-    private AutoCapacity autoCapacity;
+    private Integer autoCapacity;
 
     @Column(name = "km")
     private Float km;
@@ -74,7 +70,7 @@ public class Delegation {
 
     public Delegation(){}
 
-    public Delegation(String description, Date dateTimeStart, Date dateTimeStop) {
+    public Delegation(String description, Date dateTimeStart, Date dateTimeStop){
         this.description = description;
         this.dateTimeStart = dateTimeStart;
         this.dateTimeStop = dateTimeStop;
