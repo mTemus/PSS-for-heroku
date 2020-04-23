@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-@EnableOAuth2Sso
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -58,7 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .oauth2Login()
                 .loginPage("/oauth_login")
                 .defaultSuccessUrl("/oa2_user")
-                .failureUrl(LOGIN_FAILURE_URL);
+                .failureUrl(LOGIN_FAILURE_URL)
+        ;
     }
 
     @Bean
