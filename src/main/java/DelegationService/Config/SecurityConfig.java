@@ -2,6 +2,7 @@ package DelegationService.Config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
+@EnableOAuth2Sso
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -21,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_FAILURE_URL = "/login?error";
     private static final String LOGIN_URL = "/login";
     private static final String LOGOUT_SUCCESS_URL = "/login";
+    private static final String OAUTH2_LOGIN_SUCCESS = "/mainpage";
 
     @Qualifier("userDetailsServiceImpl")
     @Autowired
@@ -48,7 +51,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/swagger-ui.html/**").hasRole("ADMIN")
                 .and().formLogin().loginPage(LOGIN_URL).loginProcessingUrl(LOGIN_PROCESSING_URL)
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl(LOGOUT_SUCCESS_URL);
+                .logoutSuccessUrl(LOGOUT_SUCCESS_URL)
+                .and()
+
+                // oauth2
+                .oauth2Login()
+                .loginPage("/oauth_login")
+                .defaultSuccessUrl("/oa2_user")
+                .failureUrl(LOGIN_FAILURE_URL);
     }
 
     @Bean
