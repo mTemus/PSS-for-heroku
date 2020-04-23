@@ -11,3 +11,14 @@ spring:
   vaadin:
     productionMode: false
     compatibilityMode: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: 591a7ab726eb60dbc5eb
+            clientSecret: d4fb9a2ea8179838e40b076922b96a6b58fd8ba2
+          google:
+            clientId: 761742879560-ch093e94rj6gq9kpo4tsu224cnni7j4e.apps.googleusercontent.com
+            clientSecret: 4WtuIcrwu_jCmeg2T8xGEPYg
