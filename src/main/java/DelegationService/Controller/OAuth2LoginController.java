@@ -17,11 +17,6 @@ import java.util.*;
 @RestController
 public class OAuth2LoginController {
 
-    @Autowired
-    private ClientRegistrationRepository clientRegistrationRepository;
-    private static String authorizationRequestBaseUri = "oauth2/authorization";
-    Map<String, String> oauth2AuthenticationUrls = new HashMap();
-
     // 8080/oauth2/authorization/github
     // 8080/oauth2/authorization/google
 
@@ -35,21 +30,5 @@ public class OAuth2LoginController {
         userData.put("location", principal.getAttribute("location"));
 
         return userData;
-    }
-
-
-    @GetMapping("/oauth_login")
-    public String getLoginPage(Model model) {
-        Iterable<ClientRegistration> clientRegistrations = null;
-        ResolvableType type = ResolvableType.forInstance(this.clientRegistrationRepository).as(Iterable.class);
-        if (type != ResolvableType.NONE && ClientRegistration.class.isAssignableFrom(type.resolveGenerics()[0])) {
-            clientRegistrations = (Iterable)this.clientRegistrationRepository;
-        }
-
-        clientRegistrations.forEach((registration) -> {
-            String var10000 = (String)this.oauth2AuthenticationUrls.put(registration.getClientName(), authorizationRequestBaseUri + "/" + registration.getRegistrationId());
-        });
-        model.addAttribute("urls", this.oauth2AuthenticationUrls);
-        return "oauth_login";
     }
 }
