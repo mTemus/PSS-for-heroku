@@ -19,14 +19,15 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     private LoginForm login = new LoginForm();
     Anchor anchor = new Anchor("/register", "Nie masz konta? ZAREJESTRUJ SIE");
-
+    Anchor google = new Anchor("/oauth2/authorization/google", "Zaloguj się przy użyciu konta Google");
+    Anchor github = new Anchor("/oauth2/authorization/github", "Zaloguj się przy użyciu  GitHub");
     public LoginView(){
         addClassName("login-view");
         setSizeFull();
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
         login.setAction("login");
-        add(new H1("Login | DIET APP"), login, anchor);
+        add(new H1("Login | DIET APP"), login, anchor, google, github);
     }
 
     @Override
