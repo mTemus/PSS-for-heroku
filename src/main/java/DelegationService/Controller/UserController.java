@@ -27,7 +27,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/gettAllUsersByRole")
+    @GetMapping("/getAllUsersByRole")
     @ResponseBody
     public List<User> gettAllUsersByRole(String roleName){
         return userService.getAllUsersByRoleName(roleName);
@@ -39,10 +39,21 @@ public class UserController {
         userService.changePassword(userId, passwordNew);
     }
 
+    @PutMapping("/makeAdmin")
+    @ResponseBody
+    public void makeAdmin(@RequestParam long userId){
+        userService.makeAdmin(userId);
+    }
+
+    @PutMapping("/makeUser")
+    @ResponseBody
+    public void makeUser(@RequestParam long userId){
+        userService.makeUser(userId);
+    }
+
     @DeleteMapping("/deleteUserById")
     @ResponseBody
     public boolean deleteUserById(@RequestParam long userId){
         return userService.deleteUserById(userId);
     }
-
 }

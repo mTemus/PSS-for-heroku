@@ -7,6 +7,9 @@ import DelegationService.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -14,8 +17,8 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public void registerUser(User userNew){
-        userRepository.save(userNew);
+    public User registerUser(User userNew){
+        return userRepository.save(userNew);
     }
 
     public List<User> getAllUsers(){
@@ -36,6 +39,20 @@ public class UserService {
         });
     }
 
+    public void makeAdmin(long userId){
+        userRepository.findById((int)userId).map(user1 -> {
+            user1.setRoles(new HashSet<>(Arrays.asList(new Role(RoleTypes.ADMIN ))));
+            return userRepository.save(user1);
+        });
+    }
+
+    public void makeUser(long userId){
+        userRepository.findById((int)userId).map(user1 -> {
+            user1.setRoles(new HashSet<>(Arrays.asList(new Role(RoleTypes.USER))));
+            return userRepository.save(user1);
+        });
+    }
+
     public boolean deleteUserById(long userId) {
         boolean exist = userRepository.findAll().removeIf(user -> user.getIduser() == (int)userId);
         if(exist){
@@ -50,8 +67,5 @@ public class UserService {
     }
     public User finndUserByEmail(String email){
         return userRepository.findByEmail(email);
-    }
-    public User modifyUser(long userId, User userNew){
-        return userRepository.save(userNew);
     }
 }

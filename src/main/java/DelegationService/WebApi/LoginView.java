@@ -1,6 +1,6 @@
 package DelegationService.WebApi;
 
-import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.login.LoginForm;
@@ -12,7 +12,7 @@ import com.vaadin.flow.router.Route;
 
 import java.util.Collections;
 
-@CssImport("./shared-styles.css")
+
 @Route(value="login")
 @PageTitle("Login | DIET APP")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {

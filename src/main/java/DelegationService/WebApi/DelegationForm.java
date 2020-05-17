@@ -1,5 +1,6 @@
 package DelegationService.WebApi;
 
+import DelegationService.Other.AutoCapacity;
 import DelegationService.Other.TransportType;
 import DelegationService.Model.Delegation;
 import com.vaadin.flow.component.Component;
@@ -28,15 +29,16 @@ public class DelegationForm extends FormLayout {
     private TextField dinnerNumber = new TextField("Dinner Number");
     private TextField supperNumber = new TextField("Breakfast Number");
     private TextField ticketPrice = new TextField("Ticket Price");
-    private TextField autoCapacity = new TextField("Auto Capacity");
+    //private TextField autoCapacity = new TextField("Auto Capacity");
     private TextField km = new TextField("Km");
     private TextField accomodationPrice = new TextField("Accommodation Price");
     private TextField otherTicketsPrice = new TextField("Other Tickets Price");
     private TextField otherOutlayDesc = new TextField("Other Outlay Desc");
     private TextField otherOutlayPrice = new TextField("Other Outlay Price");
     private DatePicker dateTimeStart = new DatePicker("Date Start");
-    private DatePicker dataTimeStop= new DatePicker("Date End");
+    private DatePicker dateTimeStop= new DatePicker("Date End");
     private ComboBox<TransportType> transportType = new ComboBox<>("Transport type");
+    private ComboBox<AutoCapacity> autoCapacity = new ComboBox<>("Auto Capacity");
 
     private Button save = new Button("Save");
     private Button delete = new Button("Delete");
@@ -51,24 +53,27 @@ public class DelegationForm extends FormLayout {
         binder.forField(breakfastNumber).withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getBreakfastNumber, Delegation::setBreakfastNumber);
         binder.forField(dinnerNumber).withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getDinnerNumber, Delegation::setDinnerNumber);
         binder.forField(supperNumber).withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getSupperNumber, Delegation::setSupperNumber);
-        binder.forField(ticketPrice).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getTicketPrice, Delegation::setTicketPrice);;
+        binder.forField(ticketPrice).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getTicketPrice,Delegation::setTicketPrice);
+        //binder.forField(autoCapacity).withNullRepresentation("").withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegarion::getAutoCapacity, Delegarion::setAutoCapacity);
         binder.forField(km).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getKm, Delegation::setKm);
         binder.forField(accomodationPrice).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getAccomodationPrice, Delegation::setAccomodationPrice);
         binder.forField(otherTicketsPrice).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getOtherTicketsPrice, Delegation::setOtherTicketsPrice);
         binder.forField(otherOutlayDesc).bind(Delegation::getOtherOutlayDesc, Delegation::setOtherOutlayDesc);
         binder.forField(otherOutlayPrice).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getOtherOutlayPrice, Delegation::setOtherOutlayPrice);
         binder.forField(dateTimeStart).withConverter(new LocalDateToDateConverter(ZoneId.systemDefault())).bind("dateTimeStart");
-        binder.forField(dataTimeStop).withConverter(new LocalDateToDateConverter(ZoneId.systemDefault())).bind("dateTimeStop");
+        binder.forField(dateTimeStop).withConverter(new LocalDateToDateConverter(ZoneId.systemDefault())).bind("dateTimeStop");
         binder.forField(transportType).bind(Delegation::getTransportType, Delegation::setTransportType);
+        binder.forField(autoCapacity).bind(Delegation::getAutoCapacity, Delegation::setAutoCapacity);
         binder.setBean(new Delegation());
 
         transportType.setItems(TransportType.values());
+        autoCapacity.setItems(AutoCapacity.values());
 
         addClassName("delegation-form");
 
         add(
                 dateTimeStart,
-                dataTimeStop,
+                dateTimeStop,
                 description,
                 travelDietAmount,
                 breakfastNumber,
@@ -76,6 +81,7 @@ public class DelegationForm extends FormLayout {
                 supperNumber,
                 transportType,
                 ticketPrice,
+                autoCapacity,
                 km,
                 accomodationPrice,
                 otherTicketsPrice,
@@ -104,7 +110,7 @@ public class DelegationForm extends FormLayout {
 
         save.setEnabled(false);
         binder.addStatusChangeListener(status -> {
-                    save.setEnabled(!status.hasValidationErrors() && !dateTimeStart.isEmpty() && !dataTimeStop.isEmpty());
+                    save.setEnabled(!status.hasValidationErrors() && !dateTimeStart.isEmpty() && !dateTimeStop.isEmpty());
                 }
         );
         return new HorizontalLayout(save, modify, delete, close);
