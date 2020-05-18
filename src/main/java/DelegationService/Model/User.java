@@ -59,9 +59,9 @@ public class User {
     private Date registrationDate = new Date();
 
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleName")
-    private Set<Role> roles = new HashSet<>(Arrays.asList(new Role(RoleTypes.USER)));
+    private Set<Role> roles;
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

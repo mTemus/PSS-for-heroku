@@ -14,7 +14,7 @@ import java.util.Collections;
 
 
 @Route(value="login")
-@PageTitle("Login | DIET APP")
+@PageTitle("Login")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     private LoginForm login = new LoginForm();
@@ -27,7 +27,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
         login.setAction("login");
-        add(new H1("Login | DIET APP"), login, anchor, google, github);
+        add(new H1("Login"), login, anchor, google, github);
     }
 
     @Override

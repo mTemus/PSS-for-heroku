@@ -29,7 +29,6 @@ public class DelegationForm extends FormLayout {
     private TextField dinnerNumber = new TextField("Dinner Number");
     private TextField supperNumber = new TextField("Breakfast Number");
     private TextField ticketPrice = new TextField("Ticket Price");
-    //private TextField autoCapacity = new TextField("Auto Capacity");
     private TextField km = new TextField("Km");
     private TextField accomodationPrice = new TextField("Accommodation Price");
     private TextField otherTicketsPrice = new TextField("Other Tickets Price");

@@ -52,12 +52,13 @@ public class MainView extends AppLayout {
         //RouterLink loginLink = new RouterLink("Login", LoginView.class);
         RouterLink mainLink = new RouterLink("Main", MainPage.class);
         RouterLink delegationLink = new RouterLink("Delegations", DelegationView.class);
-        RouterLink adminDelegationLink = new RouterLink("All Delegations", AdminDelegationView.class);
+        RouterLink adminDelegationLink = new RouterLink("Admin Delegations", AdminDelegationView.class);
         //loginLink.setHighlightCondition(HighlightConditions.sameLocation());
         userLink.setHighlightCondition(HighlightConditions.sameLocation());
         mainLink.setHighlightCondition(HighlightConditions.sameLocation());
         delegationLink.setHighlightCondition(HighlightConditions.sameLocation());
-        //addToDrawer(new VerticalLayout(userLink, mainLink, delegationLink));
+        adminDelegationLink.setHighlightCondition(HighlightConditions.sameLocation());
+        addToDrawer(new VerticalLayout(userLink, mainLink, delegationLink, adminDelegationLink));
     }
 
     public String currentUser(){

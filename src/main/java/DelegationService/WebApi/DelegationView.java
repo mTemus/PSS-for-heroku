@@ -21,7 +21,7 @@ import java.util.Date;
 
 @CssImport("./shared-styles.css")
 @Route(value="delegation", layout = MainView.class)
-@PageTitle("Delegation | DIET APP")
+@PageTitle("Delegation")
 public class DelegationView extends VerticalLayout {
     @Autowired
     DelegationService delegationService;

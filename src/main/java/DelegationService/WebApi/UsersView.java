@@ -17,7 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 @CssImport("./shared-styles.css")
 @Route(value="users", layout = MainView.class)
-@PageTitle("Users | DIET APP")
+@PageTitle("Users ")
 public class UsersView extends VerticalLayout {
     private UserService userService;
     private Grid<User> grid = new Grid<>(User.class);

@@ -17,9 +17,10 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public User registerUser(User userNew){
-        return userRepository.save(userNew);
+    public void registerUser(User userNew){
+        userRepository.save(userNew);
     }
+
 
     public List<User> getAllUsers(){
         return  userRepository.findAll();
@@ -39,7 +40,7 @@ public class UserService {
         });
     }
 
-    public void makeAdmin(long userId){
+   public void makeAdmin(long userId){
         userRepository.findById((int)userId).map(user1 -> {
             user1.setRoles(new HashSet<>(Arrays.asList(new Role(RoleTypes.ADMIN ))));
             return userRepository.save(user1);

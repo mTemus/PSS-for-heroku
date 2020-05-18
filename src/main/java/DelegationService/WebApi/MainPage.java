@@ -14,8 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 @CssImport("./shared-styles.css")
-@Route(value="mainpage", layout = MainView.class)
-@PageTitle("Main Page | DIET APP")
+@Route(value="", layout = MainView.class)
+@PageTitle("Main Page")
 public class MainPage extends VerticalLayout {
 
     @Autowired

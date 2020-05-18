@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 @CssImport("./shared-styles.css")
 @Route(value="register", layout = MainView.class)
-@PageTitle("Registration | DIET APP")
+@PageTitle("Registration")
 public class RegistrationView extends VerticalLayout {
 
     @Autowired
@@ -39,7 +39,7 @@ public class RegistrationView extends VerticalLayout {
         setSizeFull();
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
-        add(new H1("Registration | DIET APP"),buildForm());
+        add(new H1("Registration"),buildForm());
     }
 
     private Component buildForm(){
