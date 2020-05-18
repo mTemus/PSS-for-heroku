@@ -1,9 +1,9 @@
 spring:
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/delegation?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: root
-    password: JebacDisa69@
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://ec2-79-125-26-232.eu-west-1.compute.amazonaws.com:5432/da69iiqgavtliq?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+    username: oimdgdyotuhmgu
+    password: 7583b686a2b0e3ad13019629fc227b4219bdf9b2f2e687aaab91dda2f7be89ce
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true

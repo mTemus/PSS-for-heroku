@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "Delegation")
+@Table(name = "\"Delegation\"")
 @Getter
 @Setter
 public class Delegation {
