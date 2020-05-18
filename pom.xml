@@ -171,9 +171,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <nodeVersion>
-                        v12.14.0
-                    </nodeVersion>
+                    <nodeVersion>v12.14.0</nodeVersion>
                 </configuration>
 
             </plugin>
